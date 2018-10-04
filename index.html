@@ -1,0 +1,51 @@
+<html>
+  <body>
+    <h2>Login to your account</h2>
+    <form>
+      <input type='text' id='username' placeholder='username' />
+      <input type='password' id='password' placeholder='password' />
+      <button id='login' type='submit' class='btn'>Login</button>
+      <!-- <a class="forgot" href="#">Forgot Username?</a> -->
+    </form>
+  </body>
+</html>
+
+<script>
+  creds = {
+    'andrew': 'carnegie',
+    'student': 'tartans@1',
+    'admin': 'admin',
+    'root': 'tartans@1',
+    'chris': 'may',
+    'matt': 'kaar'
+  }
+  
+  // Retrieve email/password object from the login/signup page
+  function getCredentials() {
+    const user = {
+      username: document.getElementById('username').value,
+      password: document.getElementById('password').value
+    };
+    return user;
+  }
+
+  // Log in either using the given email/password or the token from storage
+  function login(user) {
+    if (user['username'] in creds && user['password'] == creds[user['username']]) {
+      alert("Successful Login");
+    } else {
+      alert("Invalid Login");
+    }
+  }
+
+  document.addEventListener('click', function(ev) {
+    console.log(ev)
+    switch(ev.target.id) {
+      case 'login': {
+        const user = getCredentials();
+        login(user);
+        break;
+      }
+    }
+  });
+</script>
